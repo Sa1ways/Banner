@@ -27,12 +27,19 @@ public class MainActivity extends AppCompatActivity implements Banner.OnPageClic
 
     private void initView() {
         ((Banner)findViewById(R.id.banner))
+                // set the current-page indicator drawable
                 .setCurrentIndicatorDrawable(getIndicatorDrawable(R.drawable.indicator_current_vp))
+                // set the default indicator drawable
                 .setNormalIndicatorDrawable(getIndicatorDrawable(R.drawable.indicator_normal_vp))
-                .adjustScrollerDuration(400)
-                .setIntervalDuration(3000)
+                //  adjust the ViewPager Scroller's Duration through the reflection for smooth page-flip
+                .adjustScrollerDuration(450)
+                // set the Interval between page-flip
+                .setIntervalDuration(5000)
+                // indicator layout bottom margin
                 .setIndicatorBottomMargin(10)
+                // page click callback
                 .setOnPageClickListener(this)
+                // show data( String[] | @ResInt[])
                 .setData(URLS);
     }
 
@@ -44,6 +51,5 @@ public class MainActivity extends AppCompatActivity implements Banner.OnPageClic
     private Drawable getIndicatorDrawable(int res){
         return getResources().getDrawable(res);
     }
-
 
 }
