@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="shawn.cn.banner.MainActivity">
+    <shawn.cn.libaray.banner.Banner
+        android:id="@+id/banner"
+        app:intervalDuration="3000"
+        app:scrollerDuration="400"
+        app:currentIndicatorDrawable="@drawable/indicator_current_vp"
+        app:normalIndicatorDrawable="@drawable/indicator_normal_vp"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"></shawn.cn.libaray.banner.Banner>
+
+</FrameLayout>

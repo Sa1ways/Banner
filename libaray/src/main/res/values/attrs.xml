@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Banner">
+        <attr name="pageSize" format="integer"/>
+        <attr name="decorationBgColor" format="color"/>
+        <attr name="scrollerDuration" format="integer"/>
+        <attr name="intervalDuration" format="integer"/>
+        <attr name="bottomMargin" format="integer"/>
+        <attr name="normalIndicatorDrawable" format="reference"/>
+        <attr name="currentIndicatorDrawable" format="reference"/>
+    </declare-styleable>
+</resources>
