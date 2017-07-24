@@ -10,6 +10,8 @@
         android:id="@+id/banner"
         app:intervalDuration="3000"
         app:scrollerDuration="400"
+        app:enableAutoScroll="false"
+        app:enableCycle="false"
         app:currentIndicatorDrawable="@drawable/indicator_current_vp"
         app:normalIndicatorDrawable="@drawable/indicator_normal_vp"
         android:layout_width="match_parent"

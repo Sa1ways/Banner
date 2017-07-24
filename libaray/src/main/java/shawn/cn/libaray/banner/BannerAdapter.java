@@ -49,6 +49,10 @@ public class BannerAdapter extends PagerAdapter implements View.OnTouchListener,
 
     private CountDownTimer mTimer;
 
+    private boolean sEnableCycle;
+
+    private boolean sEnableAutoScroll;
+
     public BannerAdapter(Context context) {
         this.mContext = context;
         this.mIvContainer = new SparseArray<>();
@@ -66,6 +70,14 @@ public class BannerAdapter extends PagerAdapter implements View.OnTouchListener,
 
     public void setOnPageSwitchListener(Banner.OnPageSwitchListener listener) {
         this.mOnPageSwitchListener = listener;
+    }
+
+    public void setEnableCycle(boolean sEnableCycle) {
+        this.sEnableCycle = sEnableCycle;
+    }
+
+    public void setEnableAutoScroll(boolean sEnableAutoScroll) {
+        this.sEnableAutoScroll = sEnableAutoScroll;
     }
 
     public void setResData(int[] mResData) {
@@ -103,7 +115,9 @@ public class BannerAdapter extends PagerAdapter implements View.OnTouchListener,
     }
 
     private void startTimer() {
-        if (mTimer != null) {
+        if(!sEnableAutoScroll)
+            return;
+        if (mTimer != null ) {
             this.mTimer.cancel();
             this.mTimer = null;
             this.sInitTimer = true;
@@ -136,7 +150,8 @@ public class BannerAdapter extends PagerAdapter implements View.OnTouchListener,
         int count = 0;
         if (mResData != null || mUrlData != null) {
             count = mResData == null ? mUrlData.length : mResData.length;
-            count *= 2;
+            if(sEnableCycle)
+                count *= 2;
         }
         return count;
     }
@@ -158,9 +173,11 @@ public class BannerAdapter extends PagerAdapter implements View.OnTouchListener,
             iv.setOnClickListener(this);
             iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
             if(sResData)
-                mImageLoader.loadImage(mContext,(mResData[position % (getCount() / 2)]),iv);
+                mImageLoader.loadImage(mContext,(mResData[position %(sEnableCycle?(getCount() / 2):
+                        getCount())]),iv);
             else
-                mImageLoader.loadImage(mContext,(mUrlData[position % (getCount() / 2)]),iv);
+                mImageLoader.loadImage(mContext,(mUrlData[position %(sEnableCycle?(getCount() / 2):
+                        getCount())]),iv);
             mIvContainer.put(position, iv);
         }
         container.addView(iv);
@@ -180,6 +197,11 @@ public class BannerAdapter extends PagerAdapter implements View.OnTouchListener,
          */
         @Override
         public void onPageSelected(int position) {
+            if(!sEnableCycle){
+                mCurrPageIndex = position;
+                mOnPageSwitchListener.onChange(position);
+                return;
+            }
             if (position == 0) {
                 mHandler.postDelayed(new Runnable() {
                     @Override

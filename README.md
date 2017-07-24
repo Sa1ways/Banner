@@ -10,6 +10,8 @@
      <attr name="bottomMargin" format="integer"/>
      <attr name="normalIndicatorDrawable" format="reference"/>
      <attr name="currentIndicatorDrawable" format="reference"/>
+     <attr name="enableAutoScroll" format="boolean"/>
+     <attr name="enableCycle" format="boolean"/>
 
 #useage in layout.xml:
 
@@ -17,6 +19,8 @@
               android:id="@+id/banner"
               app:intervalDuration="3000"
               app:scrollerDuration="400"
+              app:enableAutoScroll="false"
+              app:enableCycle="false"
               app:currentIndicatorDrawable="@drawable/indicator_current_vp"
               app:normalIndicatorDrawable="@drawable/indicator_normal_vp"
               android:layout_width="match_parent"
@@ -36,6 +40,10 @@
                       .setIndicatorBottomMargin(10)
                       // page click callback
                       .setOnPageClickListener(this)
+                      // set enable auto scroll or not
+                      .setEnableAutoScroll(true)
+                      // set enable cycle or not
+                      .setEnableCycle(true)
                       // show data( String[] | @ResInt[])
                       .setData(URLS);
 

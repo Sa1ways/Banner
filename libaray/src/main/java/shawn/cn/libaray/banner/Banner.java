@@ -53,6 +53,10 @@ public class Banner extends FrameLayout  {
 
     private Drawable mCurrentIndicatorDrawable;
 
+    private boolean sEnableCycle;
+
+    private boolean sEnableAutoScroll;
+
     public Banner setOnPageClickListener(OnPageClickListener listener) {
         this.mBannerAdapter.setOnPageClickListener(listener);
         return this;
@@ -84,6 +88,8 @@ public class Banner extends FrameLayout  {
         mScrollerDuration = array.getInt(R.styleable.Banner_scrollerDuration,DEFAULT_SCROLLER_DURATION);
         mInterval = array.getInt(R.styleable.Banner_intervalDuration,DEFAULT_INTERVAL);
         mIndicatorBottomMargin = array.getInt(R.styleable.Banner_bottomMargin,0);
+        sEnableAutoScroll = array.getBoolean(R.styleable.Banner_enableAutoScroll,true);
+        sEnableCycle = array.getBoolean(R.styleable.Banner_enableCycle,true);
         array.recycle();
     }
 
@@ -91,6 +97,8 @@ public class Banner extends FrameLayout  {
         // add viewPager into banner
         mViewPager = new ViewPager(getContext());
         mBannerAdapter= new BannerAdapter(getContext());
+        mBannerAdapter.setEnableAutoScroll(sEnableAutoScroll);
+        mBannerAdapter.setEnableCycle(sEnableCycle);
         mBannerAdapter.setInterval(mInterval);
         mBannerAdapter.onAttachToViewPager(mViewPager);
         mBannerAdapter.setOnPageSwitchListener(mOnPageSwitchListener);
@@ -99,6 +107,18 @@ public class Banner extends FrameLayout  {
                 , ViewGroup.LayoutParams.MATCH_PARENT);
         addView(mViewPager, params);
         adjustScrollerDuration(mScrollerDuration);
+    }
+
+    public Banner setEnableCycle(boolean enableCycle) {
+        this.sEnableCycle = enableCycle;
+        this.mBannerAdapter.setEnableCycle(enableCycle);
+        return this;
+    }
+
+    public Banner setEnableAutoScroll(boolean enableAutoScroll) {
+        this.sEnableAutoScroll = enableAutoScroll;
+        this.mBannerAdapter.setEnableAutoScroll(enableAutoScroll);
+        return this;
     }
 
     public Banner setNormalIndicatorDrawable(Drawable drawable) {

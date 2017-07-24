@@ -8,5 +8,7 @@
         <attr name="bottomMargin" format="integer"/>
         <attr name="normalIndicatorDrawable" format="reference"/>
         <attr name="currentIndicatorDrawable" format="reference"/>
+        <attr name="enableAutoScroll" format="boolean"/>
+        <attr name="enableCycle" format="boolean"/>
     </declare-styleable>
 </resources>

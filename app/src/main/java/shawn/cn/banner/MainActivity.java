@@ -39,8 +39,14 @@ public class MainActivity extends AppCompatActivity implements Banner.OnPageClic
                 .setIndicatorBottomMargin(10)
                 // page click callback
                 .setOnPageClickListener(this)
+                // set enable auto scroll or not
+                .setEnableAutoScroll(true)
+                // set enable cycle or not
+                .setEnableCycle(true)
                 // show data( String[] | @ResInt[])
                 .setData(URLS);
+
+        ((Banner)findViewById(R.id.banner)).setData(RES);
     }
 
     @Override
