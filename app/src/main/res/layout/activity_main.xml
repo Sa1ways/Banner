@@ -13,6 +13,6 @@
         app:currentIndicatorDrawable="@drawable/indicator_current_vp"
         app:normalIndicatorDrawable="@drawable/indicator_normal_vp"
         android:layout_width="match_parent"
-        android:layout_height="220dp"></shawn.cn.libaray.banner.Banner>
+        android:layout_height="220dp"/>
 
 </FrameLayout>
